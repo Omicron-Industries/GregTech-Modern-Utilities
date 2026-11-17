@@ -132,6 +132,10 @@ legacyForge {
     }
 }
 
+mixin {
+    add sourceSets.main, 'mixins.gtmutils.refmap.json'
+    config 'gtmutils.mixins.json'
+}
 
 apply from: "$rootDir/gradle/scripts/spotless.gradle"
 
@@ -154,6 +158,10 @@ dependencies {
     modImplementation("dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}")
     modRuntimeOnly("dev.architectury:architectury-forge:${architectury_version}")
     modImplementation("appeng:appliedenergistics2-forge:${appeng_version}")
+
+    // mixinextras
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.3"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.3"))
 
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.24'
